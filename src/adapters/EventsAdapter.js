@@ -19,25 +19,27 @@ export default class EventsAdapter {
     })
   }
 
-  // static addEvent(event, start, end) {
-  //   return fetch(path,{
-  //     method: 'POST',
-  //     headers: headers(),
-  //     body: JSON.stringify({
-  //       title: event.title,
-  //       allDay: event.allDay,
-  //       start: start,
-  //       end: end,
-  //       type: "social"
-  //     })
-  //   })
-  //   .then( resp => resp.json())
-  //   .then(data => {
-  //       data.start = new Date(data.start)
-  //       data.end = new Date(data.end)
-  //       return data
-  //   })
-  // }
+  static addEvent(event, start, end, userId) {
+    debugger
+    return fetch(path,{
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({
+        title: event.title,
+        allDay: event.allDay,
+        start: start,
+        end: end,
+        user_id: userId,
+        type: "social"
+      })
+    })
+    .then( resp => resp.json())
+    .then(data => {
+        data.start = new Date(data.start)
+        data.end = new Date(data.end)
+        return data
+    })
+  }
 
 }
 
