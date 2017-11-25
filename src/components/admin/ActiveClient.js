@@ -1,5 +1,6 @@
 import React from 'react'
 import UsersAdapter from '../../adapters/UsersAdapter'
+import ClientCalendar from './ClientCalendar'
 
 export default class ActiveClient extends React.Component {
 
@@ -22,7 +23,6 @@ export default class ActiveClient extends React.Component {
   componentWillReceiveProps(props) {
     UsersAdapter.getClient(props.activeClient)
     .then((data) => {
-      debugger
       this.setState({
         activeClient: data
       })
@@ -33,6 +33,7 @@ export default class ActiveClient extends React.Component {
     return(
       <div>
         {this.state.activeClient.company}
+        <ClientCalendar activeClient={this.state.activeClient} />
       </div>
     )
   }

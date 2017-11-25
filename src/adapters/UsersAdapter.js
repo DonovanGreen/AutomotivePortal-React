@@ -19,7 +19,6 @@ export default class UsersAdapter {
   }
 
   static addClient(newClient){
-    debugger
     return fetch(path, {
       method: 'POST',
       headers: headers(),

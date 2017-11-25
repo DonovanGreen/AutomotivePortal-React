@@ -4,13 +4,14 @@ import ActiveClient from './ActiveClient'
 import UsersAdapter from '../../adapters/UsersAdapter'
 import AddClientForm from './AddClientForm'
 import '../../css/admin.css'
+import AdminHomeScreen from './AdminHomeScreen'
 
 export default class AdminHome extends React.Component {
   constructor(){
     super()
     this.state = {
       currentUser: {},
-      activeClient: 2,
+      activeClient: null,
       clients: [],
       addClientDropdown: false
     }
@@ -59,7 +60,10 @@ export default class AdminHome extends React.Component {
           <ClientNavigation setActiveClient={this.setActiveClient} clients={this.state.clients} />
         </div>
         <div className="col l9 m9">
-          <ActiveClient activeClient={this.state.activeClient} />
+          {this.state.activeClient === null ?
+            <AdminHomeScreen /> :
+            <ActiveClient activeClient={this.state.activeClient} />
+          }
         </div>
       </div>
     )
