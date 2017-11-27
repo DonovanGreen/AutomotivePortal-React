@@ -1,13 +1,16 @@
 import React from 'react'
 import UsersAdapter from '../../adapters/UsersAdapter'
 import ClientCalendar from './ClientCalendar'
+import ActiveSection from './ActiveSection'
+import TopClientNavigation from './TopClientNavigation'
 
 export default class ActiveClient extends React.Component {
 
   constructor() {
     super()
     this.state = {
-      activeClient: []
+      activeClient: [],
+      activeSection: 1
     }
   }
 
@@ -20,8 +23,8 @@ export default class ActiveClient extends React.Component {
     })
   }
 
-  componentWillReceiveProps(props) {
-    UsersAdapter.getClient(props.activeClient)
+  componentWillReceiveProps(nextProps) {
+    UsersAdapter.getClient(nextProps.activeClient)
     .then((data) => {
       this.setState({
         activeClient: data
@@ -29,11 +32,22 @@ export default class ActiveClient extends React.Component {
     })
   }
 
+  switchSection = (sectionNumber) => {
+    this.setState({
+      activeSection: sectionNumber
+    })
+  }
+
   render() {
     return(
       <div>
-        {this.state.activeClient.company}
-        <ClientCalendar activeClient={this.state.activeClient} />
+        <div className="client-top-navigation bg-primary">
+          <TopClientNavigation switchSection={this.switchSection} />
+        </div>
+        <div className="active-section">
+          <h5>{this.state.activeClient.company}</h5>
+          <ActiveSection activeClient={this.state.activeClient} activeSection={this.state.activeSection} />
+        </div>
       </div>
     )
   }

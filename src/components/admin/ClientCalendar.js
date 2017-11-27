@@ -19,6 +19,15 @@ export default class ClientCalendar extends React.Component {
         }
     }
 
+    componentDidMount() {
+      EventsAdapter.getEvents(this.props.activeClient.id)
+      .then(data => {
+        this.setState({
+          events: data
+        })
+      })
+    }
+
     componentWillReceiveProps(props) {
       EventsAdapter.getEvents(props.activeClient.id)
       .then(data => {

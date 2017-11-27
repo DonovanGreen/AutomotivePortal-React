@@ -13,7 +13,8 @@ export default class AdminHome extends React.Component {
       currentUser: {},
       activeClient: null,
       clients: [],
-      addClientDropdown: false
+      addClientDropdown: false,
+      userDropdown: false
     }
   }
 
@@ -43,23 +44,31 @@ export default class AdminHome extends React.Component {
 
   toggleDropdown = () => this.setState({addClientDropdown: !this.state.addClientDropdown})
 
+  toggleUserDropdown = () => this.setState({userDropdown: !this.state.userDropdown})
+
 
   render() {
     return(
       <div className="row">
-        <div className="col l3 m3 side-navigation">
-          {this.props.currentUser.firstname}
-          <button className="waves-effect waves-light btn" onClick={this.props.logOut}> LogOut </button>
+        <div className="col l2 m2 side-navigation">
+          <div className="side-nav-top">
+            <h5 className="text-primary">Donovan/Green</h5>
+            <div className="relative">
+              <strong>{this.props.currentUser.firstname} {this.props.currentUser.lastname}</strong>
+              <button className="caret-button"><i className="fa fa-caret-down" onClick={this.toggleUserDropdown}></i></button>
+            </div>
+            {this.state.userDropdown ? <button className="waves-effect waves-light btn" onClick={this.props.logOut}> LogOut </button> : null }
+          </div>
           <div className="nav-header">
             <h6>CLIENTS </h6>
-            <button onClick={this.toggleDropdown}><i className="fa fa-plus" aria-hidden="true"></i></button>
+            <button onClick={this.toggleDropdown} className="plus-button"><i className="fa fa-plus text-primary" aria-hidden="true"></i></button>
           </div>
           {this.state.addClientDropdown ?
             <AddClientForm addClient={this.addClient} />
             : null }
           <ClientNavigation setActiveClient={this.setActiveClient} clients={this.state.clients} />
         </div>
-        <div className="col l9 m9">
+        <div className="col l10 m10 zero-side-pad">
           {this.state.activeClient === null ?
             <AdminHomeScreen /> :
             <ActiveClient activeClient={this.state.activeClient} />
