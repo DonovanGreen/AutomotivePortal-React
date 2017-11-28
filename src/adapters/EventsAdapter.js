@@ -19,14 +19,27 @@ export default class EventsAdapter {
     })
   }
 
-  static addEvent(event, start, end, userId) {
+  static getCategories(activeClient) {
     debugger
+    return fetch('http://localhost:3000/api/v1/events/get_categories', {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({
+       user_id: activeClient
+     })
+    })
+    .then( resp => resp.json())
+
+  }
+
+  static addEvent(event, start, end, userId) {
     return fetch(path,{
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({
         title: event.title,
         allDay: event.allDay,
+        category: event.category,
         start: start,
         end: end,
         user_id: userId,

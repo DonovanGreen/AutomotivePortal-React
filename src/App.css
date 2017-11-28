@@ -4,6 +4,19 @@ body {
   font-weight:300;
 }
 
+[type="checkbox"]+label {
+  padding-left:23px;
+}
+
+.checkbox-container span {
+  margin-left:10px;
+}
+
+.checkbox-container {
+  display:inline-block;
+  margin-left:10px;
+}
+
 .text-primary {
   color:#f9423a;
 }

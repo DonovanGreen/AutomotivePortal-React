@@ -5,6 +5,7 @@ import moment from 'moment';
 import EventsAdapter from '../../adapters/EventsAdapter'
 import Modal, {closeStyle} from 'simple-react-modal'
 import AddEvent from './AddEvent'
+import CalendarCheckBoxes from './CalendarCheckBoxes'
 
 BigCalendar.momentLocalizer(moment);
 
@@ -78,6 +79,7 @@ export default class ClientCalendar extends React.Component {
               : null}
           <div className="calendar-outter-container">
             <div className="calendar-inner-container">
+              <CalendarCheckBoxes activeClientId={this.props.activeClient.id} />
               <BigCalendar
                 popup
                 selectable

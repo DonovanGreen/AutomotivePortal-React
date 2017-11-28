@@ -5,8 +5,8 @@ const ClientNavigation = (props) => {
   return (
     <div>
       <ul>
-        {props.clients.map((client) => {
-          return <ClientNavigationItem setActiveClient={props.setActiveClient} client={client} />
+        {props.clients.map((client, i) => {
+          return <ClientNavigationItem setActiveClient={props.setActiveClient} key={i} client={client} />
         })}
       </ul>
     </div>

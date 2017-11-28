@@ -6,7 +6,8 @@ export default class AddEvent extends React.Component {
       super()
       this.state = {
         title: "",
-        allDay: null
+        category: "",
+        allDay: null,
       }
     }
 
@@ -43,6 +44,7 @@ export default class AddEvent extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="input-field col s12">
               <input onChange={this.handleChange} name="title" placeholder="Title" required/>
+              <input onChange={this.handleChange} name="category" placeholder="Category" required/>
           </div>
           <div className="align-left">
               <div className="switch">
